@@ -1,5 +1,5 @@
 # base62
-> Package base62 converts integers into byteslices of base62 data and back again.
+> converts ints to byteslices/strings of base62 data and back again.
 
 ## install
 ```sh
@@ -8,8 +8,17 @@ go get github.com/kasperlewau/base62
 
 ## benchmarks
 ```sh
-BenchmarkEncode-8   	 2000000	       653 ns/op	      46 B/op	       6 allocs/op
-BenchmarkDecode-8   	30000000	        47.3 ns/op	       0 B/op	       0 allocs/op
+goos: linux
+goarch: amd64
+pkg: github.com/kasperlewau/base62
+BenchmarkEncoders/kasperlewau/bytes-8           30000000                34.7 ns/op             8 B/op          1 allocs/op
+BenchmarkEncoders/kasperlewau/string-8          30000000                44.0 ns/op            16 B/op          1 allocs/op
+BenchmarkEncoders/pilu/go-base62-8              30000000                43.5 ns/op            16 B/op          1 allocs/op
+BenchmarkEncoders/marksalpeter/token-8          10000000               230 ns/op              39 B/op          2 allocs/op
+BenchmarkDecoders/kasperlewau/bytes-8           50000000                32.9 ns/op             0 B/op          0 allocs/op
+BenchmarkDecoders/kasperlewau/string-8          30000000                41.5 ns/op             0 B/op          0 allocs/op
+BenchmarkDecoders/pilu/go-base62-8              10000000               175 ns/op              64 B/op          1 allocs/op
+BenchmarkDecoders/marksalpeter/token-8          10000000               193 ns/op              64 B/op          1 allocs/op
 ```
 
 ## license 
