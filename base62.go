@@ -3,34 +3,108 @@
 package base62
 
 import "bytes"
+import "strings"
+import "unsafe"
 
-var alphabet = []byte("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-var length = len(alphabet)
+const alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-// Encode returns the base62 representation of the given number
+var balphabet = []byte(alphabet)
+
+// Encode encodes the given int and returns a byteslice
 func Encode(n int) []byte {
 	if n == 0 {
-		return alphabet[:1]
+		return balphabet[:1]
 	}
 
-	b := []byte{}
+	b := make([]byte, 0)
+	length := len(alphabet)
 
-	for ; n > 0; n /= length {
-		b = append([]byte{alphabet[n%length]}, b...)
+	for n > 0 {
+		result := n / length
+		remainder := n % length
+		b = append(b, alphabet[remainder])
+		n = result
+	}
+
+	for i, j := 0, len(b)-1; i < j; i, j = i+1, j-1 {
+		b[i], b[j] = b[j], b[i]
 	}
 
 	return b
 }
 
-// Decode returns a numeric representation of the given base62 bytes
+// EncodeString encodes the given int and returns a string
+func EncodeString(n int) string {
+	if n == 0 {
+		return string(alphabet[0])
+	}
+
+	b := make([]byte, 0)
+	length := len(alphabet)
+
+	for n > 0 {
+		result := n / length
+		remainder := n % length
+		b = append(b, alphabet[remainder])
+		n = result
+	}
+
+	for i, j := 0, len(b)-1; i < j; i, j = i+1, j-1 {
+		b[i], b[j] = b[j], b[i]
+	}
+
+	return string(b)
+}
+
+// EncodeStringUnsafe encodes the given int and returns a string using unsafe tricks
+func EncodeStringUnsafe(n int) string {
+	if n == 0 {
+		return *(*string)(unsafe.Pointer(&balphabet[0]))
+	}
+
+	b := make([]byte, 0)
+	length := len(alphabet)
+
+	for n > 0 {
+		result := n / length
+		remainder := n % length
+		b = append(b, balphabet[remainder])
+		n = result
+	}
+
+	for i, j := 0, len(b)-1; i < j; i, j = i+1, j-1 {
+		b[i], b[j] = b[j], b[i]
+	}
+
+	return *(*string)(unsafe.Pointer(&b))
+}
+
+// Decode returns a numeric representation of the given base62 byteslice
 func Decode(b []byte) int {
-	var n int
+	n, length := 0, len(alphabet)
+
 	for _, c := range b {
-		i := bytes.IndexByte(alphabet, c)
+		i := bytes.IndexByte(balphabet, c)
 		if i < 0 {
 			return n
 		}
 		n = length*n + i
 	}
+
+	return n
+}
+
+// DecodeString returns a numeric representation of the given base62 string
+func DecodeString(s string) int {
+	n, length := 0, len(alphabet)
+
+	for _, c := range s {
+		i := strings.IndexRune(alphabet, c)
+		if i < 0 {
+			return n
+		}
+		n = length*n + i
+	}
+
 	return n
 }
