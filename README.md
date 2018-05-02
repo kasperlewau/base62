@@ -1,4 +1,4 @@
-# base62
+# base62 [![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/github.com/kasperlewau/base62) [![Build Status](https://travis-ci.org/kasperlewau/base62.svg?branch=master)](https://travis-ci.org/kasperlewau/base62) [![Go Report Card](https://goreportcard.com/badge/github.com/kasperlewau/base62)](https://goreportcard.com/report/github.com/kasperlewau/base62)
 > converts ints to byteslices/strings of base62 data and back again.
 
 ## install
