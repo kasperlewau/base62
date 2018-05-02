@@ -40,25 +40,6 @@ func TestDecodeStringNegative(t *testing.T) {
 	}
 }
 
-// pilu tests
-func TestEncode(t *testing.T) {
-	if !bytes.Equal([]byte("0"), base62.Encode(0)) {
-		t.Error("Expected Encode(0) to equal 0")
-	}
-	if !bytes.Equal([]byte("1B"), base62.Encode(99)) {
-		t.Error("Expected Encode(99) to equal 1B")
-	}
-}
-
-func TestDecode(t *testing.T) {
-	if 0 != base62.DecodeString("0") {
-		t.Error("Expected DecodeString('0') to equal 0")
-	}
-	if 99 != base62.DecodeString("1B") {
-		t.Error("Expected DecodeString('1B') to equal 99")
-	}
-}
-
 func ExampleDecode() {
 	fmt.Printf("%v", base62.Decode([]byte("1B")))
 	// Output:
