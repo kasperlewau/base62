@@ -2,6 +2,7 @@ package base62_test
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 
 	"github.com/kasperlewau/base62"
@@ -44,4 +45,28 @@ func TestDecode(t *testing.T) {
 	if 99 != base62.DecodeString("1B") {
 		t.Error("Expected DecodeString('1B') to equal 99")
 	}
+}
+
+func ExampleDecode() {
+	fmt.Printf("%v", base62.Decode([]byte("1B")))
+	// Output:
+	// 99
+}
+
+func ExampleDecodeString() {
+	fmt.Println(base62.DecodeString("1B"))
+	// Output:
+	// 99
+}
+
+func ExampleEncode() {
+	fmt.Printf("%s\n", base62.Encode(99))
+	// Output:
+	// 1B
+}
+
+func ExampleEncodeString() {
+	fmt.Println(base62.EncodeString(99))
+	// Output:
+	// 1B
 }
