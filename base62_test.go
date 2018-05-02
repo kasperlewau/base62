@@ -9,7 +9,7 @@ import (
 )
 
 func TestEncodeDecode(t *testing.T) {
-	for i := 0; i < 90; i++ {
+	for i := 0; i < 10000; i++ {
 		enc := base62.Encode(i)
 		dec := base62.Decode(enc)
 		if dec != i {
@@ -19,12 +19,24 @@ func TestEncodeDecode(t *testing.T) {
 }
 
 func TestEncodeDecodeString(t *testing.T) {
-	for i := 0; i < 90; i++ {
+	for i := 0; i < 10000; i++ {
 		enc := base62.EncodeString(i)
 		dec := base62.DecodeString(enc)
 		if dec != i {
 			t.Errorf("Expected decoding of encoded value %v to equal source %v. Got %v\n", enc, i, dec)
 		}
+	}
+}
+
+func TestDecodeNegative(t *testing.T) {
+	if 0 != base62.Decode([]byte("-1")) {
+		t.Error("Expected decoding of -1 to equal 0")
+	}
+}
+
+func TestDecodeStringNegative(t *testing.T) {
+	if 0 != base62.DecodeString("-1") {
+		t.Error("Expected decoding of -1 to equal 0")
 	}
 }
 
