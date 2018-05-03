@@ -6,6 +6,23 @@
 go get github.com/kasperlewau/base62
 ```
 
+## usage 
+```go
+import (
+	"fmt"
+	
+	"github.com/kasperlewau/base62"
+)
+
+func main() {
+	base62.Encode(99) // [49 66]
+	base62.EncodeString(99) // "1B"
+
+	base62.Decode([]byte("1B")) // 99
+	base62.DecodeString("1B") // 99
+}
+```
+
 ## benchmarks
 ```sh
 goos: linux
