@@ -1,7 +1,6 @@
 package base62_test
 
 import (
-	"bytes"
 	"fmt"
 	"testing"
 
