@@ -38,8 +38,7 @@ func EncodeString(n int) string {
 	length := len(alphabet)
 
 	for n > 0 {
-		res := n / length
-		rem := n % length
+		res, rem := n/length, n%length
 		b = append(b, alphabet[rem])
 		n = res
 	}
