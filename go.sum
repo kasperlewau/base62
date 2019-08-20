@@ -1,0 +1,6 @@
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/marksalpeter/token v0.0.0-20180216014620-e102fa422efe h1:qzJHsNhjkQ3N/n1diQfApiNzCY9D9/LWsqVv4xvF0C4=
+github.com/marksalpeter/token v0.0.0-20180216014620-e102fa422efe/go.mod h1:GOrW3PWMfNPsztWYUkgMbMUKGx3LSNV7UXs7TYjLCUQ=
+github.com/pilu/go-base62 v0.0.0-20131214171223-d5f2747573ce h1:4L2ltz9Bq1p7PRUtoklWBJ1EVb1yHoLiCXukHHUJIRA=
+github.com/pilu/go-base62 v0.0.0-20131214171223-d5f2747573ce/go.mod h1:Gwtp9E/dnHnyyOjMfeSTtcMbvnnZqJh4CKQbQ5jOo6o=
